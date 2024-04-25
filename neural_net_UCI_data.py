@@ -51,7 +51,9 @@ with open("wine_data.txt", "r") as f:
 td = normalize(training_data)
 
 nn = NeuralNet(13, 3, 1)
-nn.train(td, iters=100_000, print_interval=1000, learning_rate=0.1)
+nn.train(td, iters=10_000, print_interval=1_000, learning_rate=0.1)
 
 for i in nn.test_with_expected(td):
-    print(f"desired: {i[1]}, actual: {i[2]}")
+    desired = i[1][0]
+    actual = i[2][0]
+    print(f"desired: {desired}, actual: {actual}, diff: {round(abs(desired - actual), 3)}")
